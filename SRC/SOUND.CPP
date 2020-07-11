@@ -32,14 +32,11 @@ int MIDASstartup( void )
 {
 #ifndef TK_PORT_EMCC
     if ((Mix_Init( MIX_INIT_MOD ) & MIX_INIT_MOD) != MIX_INIT_MOD )
-#else
-    // Mixer in EMCC is built without MikMod support so no music for now
-    if (Mix_Init(0))
-#endif
     {
         SDL_Log( "Error initializing SDL_mixer:  %s", Mix_GetError());
         return false;
     }
+#endif
     if ( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 1024 ) == -1 )
     {
         Mix_Quit();
