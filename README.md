@@ -1,6 +1,10 @@
 Ultimate Tapan Kaikki
 =====================
 
+[![Build Status](https://api.travis-ci.org/suomipelit/ultimatetapankaikki.svg?branch=master)](https://travis-ci.org/suomipelit/ultimatetapankaikki)
+[![Downloads](https://img.shields.io/github/downloads/suomipelit/ultimatetapankaikki/total.svg)](https://github.com/suomipelit/ultimatetapankaikki/releases)
+[![Latest release](http://img.shields.io/github/release/suomipelit/ultimatetapankaikki.svg)](https://github.com/suomipelit/ultimatetapankaikki/releases/latest)
+
 ![Ultimate Tapan Kaikki GIF](https://github.com/suomipelit/suomipelit.github.io/blob/master/gifs/tk321.gif)
 
 :point_right: **The original README.TXT can be found as [README.ORIG.TXT](./README.ORIG.TXT).**
@@ -152,8 +156,6 @@ Bugfixes:
 Building from source
 --------------------
 
-[![Build Status](https://api.travis-ci.org/suomipelit/ultimatetapankaikki.svg?branch=master)](https://travis-ci.org/suomipelit/ultimatetapankaikki)
-
 **Requirements:**
 
 - CMake
@@ -211,15 +213,15 @@ Building releases
 Releases
 --------
 
-**Version 1 - 2019-01-28**
-
-- Initial release
-
-**Version 2 - 2019-02-04**
+**[Version 2](https://github.com/suomipelit/ultimatetapankaikki/releases/tag/v2) - 2019-02-04**
 
 - Fixed bug #131:
   Small sprites (crosshair, bomb, mine) were not being visible in the port.
   They worked fine in the original version.
+
+**[Version 1](https://github.com/suomipelit/ultimatetapankaikki/releases/tag/v1) - 2019-01-28**
+
+- Initial release
 
 [suomipelit-gh]: https://github.com/suomipelit
 [suomipelit-slack]: https://tinyurl.com/suomipelit-slack
