@@ -88,6 +88,7 @@ before_deploy:
       mkdir deploy
       cp ultimatetapankaikki.html deploy/index.html
       cp ultimatetapankaikki.{data,js,wasm} deploy/
+      wget -O deploy/README.md https://raw.githubusercontent.com/suomipelit/ultimatetapankaikki-web/master/README.md
     fi
 
 deploy:
