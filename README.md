@@ -183,8 +183,7 @@ which produces project files for 32-bit target. For 64-bit target, use e.g. `cma
 ***On browser:***
 
 Emscripten JavaScript/WebAssembly build for browsers is also
-supported. It has limitations like missing sound and online gaming
-support, and the port is considered as beta. You can try it live
+supported. Port is considered as beta. You can try it live
 [here](https://suomipelit.github.io/ultimatetapankaikki-web/).
 
 ``` shell
