@@ -75,7 +75,7 @@ before_install:
       ./emsdk install latest
       ./emsdk activate latest
       cd ..
-      export EXTRA_CMAKE_OPTS="-DCMAKE_TOOLCHAIN_FILE=./emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release"
+      export EXTRA_CMAKE_OPTS="-DCMAKE_TOOLCHAIN_FILE=./emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_BUILD_TYPE=Release -DTK_LOBBY_HOST=suomipelit-lobby.herokuapp.com"
     fi
 
 script:
