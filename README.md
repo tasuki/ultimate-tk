@@ -212,6 +212,22 @@ Building releases
 Releases
 --------
 
+**Work in Progress - Version 3 - 2020-MM-DD**
+
+*Network game not compatible with version 2!*
+
+- [Web port](https://suomipelit.github.io/ultimatetapankaikki-web/)
+- Network gaming changes
+    - Fixed joining with cooperative mode as active
+    - Fixed kill messages
+    - Fixed frag count in some cases
+    - Increased network code execution frequency
+    - Reduced keep-alive messages
+- Fixed a memory leak in sound resampling
+- Fixed minor buffer overflow with sprite loading
+- Fixed a local deathmatch crash if playing with enemies
+- Avoid unnecessary screen drawing
+
 **[Version 2](https://github.com/suomipelit/ultimatetapankaikki/releases/tag/v2) - 2019-02-04**
 
 - Fixed bug #131:
