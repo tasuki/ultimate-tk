@@ -7,6 +7,8 @@ Ultimate Tapan Kaikki
 
 ![Ultimate Tapan Kaikki GIF](https://github.com/suomipelit/suomipelit.github.io/blob/master/gifs/tk321.gif)
 
+[**Try live browser version here!**](https://suomipelit.github.io/ultimatetapankaikki-web/)
+
 :point_right: **The original README.TXT can be found as [README.ORIG.TXT](./README.ORIG.TXT).**
 
 This is the legendary 90s game Ultimate Tapan Kaikki, ported to
@@ -111,9 +113,13 @@ Changes required to port the game:
 - When starting the game, it runs in a window. You can change to full
   screen and with left alt + return.
 
-- Networking is now based on TCP/IP, originally it used IPX. When
-  joining a network game, there's a new screen that allows typing the
-  server address. Port is 8099.
+- Networking on native versions is now based on TCP/IP, originally it
+  used IPX. When joining a network game, there's a new screen that
+  allows typing the server address. Port is 8099.
+
+- Networking on web version is based on WebRTC. An ID is printed to
+  the console window when creating a server. You can share it with
+  your friends.
 
 - In-game screenshots are saved in BMP format as opposed to original
   PCX format.
@@ -183,7 +189,7 @@ which produces project files for 32-bit target. For 64-bit target, use e.g. `cma
 ***On browser:***
 
 Emscripten JavaScript/WebAssembly build for browsers is also
-supported. Port is considered as beta. You can try it live
+supported. You can try it live
 [here](https://suomipelit.github.io/ultimatetapankaikki-web/).
 
 ``` shell
