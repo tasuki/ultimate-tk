@@ -151,6 +151,8 @@ New features:
 
 - Text chat in multiplayer games with `Return` key.
 
+- Text input fields support copy-paste (`Ctrl + c/v`)
+
 Bugfixes:
 
 - Many memory leaks and buffer overflows have been fixed.
@@ -246,6 +248,7 @@ Releases
 - Fixed a local deathmatch crash if playing with enemies
 - Fixed empty name input
 - Avoid unnecessary screen drawing
+- Copy-paste support to text input fields
 
 **[Version 2](https://github.com/suomipelit/ultimatetapankaikki/releases/tag/v2) - 2019-02-04**
 
