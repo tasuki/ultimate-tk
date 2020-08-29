@@ -1241,7 +1241,7 @@ void sendipxnow( struct nodeaddr *node, int type, ... )
                               snd->data[a++] = (char)(Steam_amount);
                               snd->data[a++] = (char)(Spot_amount);
                             }
-                            else if (b <= effect_packet_divider)
+                            else if (b <= (int)effect_packet_divider)
                             {
                               // 4 packets for steams, indexes 1, 2, 3 and 4
                               p=(char *)&steam;
@@ -2147,7 +2147,7 @@ int getlevelextras()
                             Steam_amount = rec[a]->data[ofs++];
                             Spot_amount = rec[a]->data[ofs++];
                         }
-                        else if (effect_block <= effect_packet_divider)
+                        else if (effect_block <= (int)effect_packet_divider)
                         {
                             p=(char *)&steam;
                             p+=steam_packet_size*(effect_block-1);
