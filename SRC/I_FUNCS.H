@@ -79,7 +79,7 @@ void statics()
         strncat( text, "s", get_text_buffer_left() );
         writefonts( 16, b, text, M_YELLOW );
         strncpy( text, "+", sizeof( text ) );
-        snprintf( text2, sizeof( text ), "%d", enemy_info[a].reward*aplayer[0]->kills[a] );
+        snprintf( text2, sizeof( text2 ), "%d", enemy_info[a].reward*aplayer[0]->kills[a] );
         aplayer[0]->cash += enemy_info[a].reward*aplayer[0]->kills[a];
         strncat( text, text2, get_text_buffer_left() );
         writefonts( 103, b, text, M_RED );
@@ -126,7 +126,7 @@ void statics()
             strncat( text, "s", get_text_buffer_left() );
             writefonts( 16 + 160, b, text, M_YELLOW );
             strncpy( text, "+", sizeof( text ) );
-            snprintf( text2, sizeof( text ), "%d", enemy_info[a].reward*aplayer[1]->kills[a] );
+            snprintf( text2, sizeof( text2 ), "%d", enemy_info[a].reward*aplayer[1]->kills[a] );
             aplayer[1]->cash += enemy_info[a].reward*aplayer[1]->kills[a];
             strncat( text, text2, get_text_buffer_left() );
             writefonts( 103 + 160, b, text, M_RED );
