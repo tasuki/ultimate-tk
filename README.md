@@ -118,9 +118,9 @@ Changes required to port the game:
   used IPX. When joining a network game, there's a new screen that
   allows typing the server address. Port is 8099.
 
-- Networking on web version is based on WebRTC. An ID is printed to
-  the console window when creating a server. You can share it with
-  your friends.
+- Networking on web version is based on WebRTC. All currently active
+  games are visible in server list. List is provided by
+  [lobby](https://github.com/suomipelit/suomipelit-lobby) server.
 
 - In-game screenshots are saved in BMP format as opposed to original
   PCX format.
@@ -244,7 +244,7 @@ Releases
     - Fixed frag count in some cases
     - Fixed missing smoke and spot light effects on clients
     - Increased network code execution frequency
-    - Show number of players on server list
+    - Show number of players on server list (native port only for now)
     - Reduced keep-alive messages
 - Fixed a memory leak in sound resampling
 - Fixed minor buffer overflow with sprite loading
