@@ -235,7 +235,7 @@ Building releases
 Releases
 --------
 
-**Work in Progress - Version 3 - 2020-MM-DD**
+**[Version 3](https://github.com/suomipelit/ultimatetapankaikki/releases/tag/v3) - 2020-11-08**
 
 *Network game not compatible with version 2!*
 

@@ -1,15 +1,7 @@
 #ifndef __TK__DEFINES__
 #define __TK__DEFINES__
 
-// Using __EMSCRIPTEN__ instead of TK_PORT_EMCC because including "PORT.H" in this file
-// can cause a clash with CLOCKS_PER_SEC define...
-#if defined (__EMSCRIPTEN__)
-#define Remark " (web beta)"
-#else
-#define Remark
-#endif
-
-#define Version "v1.21+sp3 SNAPSHOT" Remark
+#define Version "v1.21+sp3"
 #define pi 3.14159265358979
 #define CRATE_WAKE_UP_COUNT 500 // = 12.5 secs if 40 frames per sec
 #define MESSAGE_TIME_ON_SCREEN 200  // = 5 secs if 40 frames per sec

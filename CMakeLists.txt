@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(ultimatetapankaikki VERSION 1.0.2)
+project(ultimatetapankaikki VERSION 1.21.3)
 
 set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR}/cmake-modules)
 
