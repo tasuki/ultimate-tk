@@ -247,7 +247,7 @@ Releases
     - Fixed frag count in some cases
     - Fixed missing smoke and spot light effects on clients
     - Increased network code execution frequency
-    - Show number of players on server list (native port only for now)
+    - Show number of players on server list
     - Reduced keep-alive messages
     - Add game name option to multiplayer options
 - Fixed a memory leak in sound resampling
