@@ -1,9 +1,9 @@
 #!/bin/bash
 
-IMAGE=debian:oldstable
+RELEASE=buster
 BUILDDEPS=(cmake libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev)
 PKGNAME=ultimatetapankaikki
-PKGVERSION=3.21+sp2
+PKGVERSION=3.21+sp3
 PKGDEPS=(libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-net-2.0-0)
 PKGDESC="The legendary 90s game Ultimate Tapan Kaikki"
 PKGURL="https://github.com/suomipelit/ultimatetapankaikki"
@@ -56,10 +56,10 @@ EOF
 
 docker run \
     --rm \
-    -e ORIGUID=$(id -u) \
-    -e ORIGGID=$(id -g) \
-    -v $(pwd):/mnt \
-    debian:oldstable \
+    -e ORIGUID="$(id -u)" \
+    -e ORIGGID="$(id -g)" \
+    -v "$(pwd):/mnt" \
+    debian:$RELEASE \
     bash /mnt/build-in-docker.bash
 
 rm build-in-docker.bash
