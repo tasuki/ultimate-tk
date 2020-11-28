@@ -28,6 +28,7 @@ matrix:
           # Extra packages not needed with emcc
           packages: []
     - os: osx
+      osx_image: xcode12.2
       compiler: clang
 
 addons:
