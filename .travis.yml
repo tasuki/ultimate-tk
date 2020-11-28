@@ -22,6 +22,7 @@ matrix:
     - os: linux
       compiler: clang
     - os: linux
+      dist: focal
       env: TK_BUILD_TYPE=browser
       addons:
         apt:
