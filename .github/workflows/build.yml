@@ -118,7 +118,6 @@ jobs:
       run: |
         cp src/ultimatetapankaikki.html deploy/index.html
         cp src/ultimatetapankaikki.{data,js,wasm} deploy/
-        wget -O deploy/README.md https://raw.githubusercontent.com/suomipelit/ultimatetapankaikki-web/master/README.md
         cd deploy
         git config --global user.email "GitHub Actions"
         git config --global user.name "actions@github.com"
