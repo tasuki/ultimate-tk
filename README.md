@@ -1,7 +1,7 @@
 Ultimate Tapan Kaikki
 =====================
 
-[![Build Status](https://api.travis-ci.org/suomipelit/ultimatetapankaikki.svg?branch=master)](https://travis-ci.org/suomipelit/ultimatetapankaikki)
+![Build](https://github.com/suomipelit/ultimatetapankaikki/workflows/Build/badge.svg)
 [![Downloads](https://img.shields.io/github/downloads/suomipelit/ultimatetapankaikki/total.svg)](https://github.com/suomipelit/ultimatetapankaikki/releases)
 [![Latest release](http://img.shields.io/github/release/suomipelit/ultimatetapankaikki.svg)](https://github.com/suomipelit/ultimatetapankaikki/releases/latest)
 
