@@ -3,7 +3,9 @@ project(ultimatetapankaikki VERSION 1.21.3)
 
 # EMCC can retrieve SDL2 by itself
 if (NOT EMSCRIPTEN)
-	if(NOT EXISTS "${CMAKE_BINARY_DIR}/cmake-modules/FindSDL2.cmake")
+    set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR}/cmake-modules)
+
+    if(NOT EXISTS "${CMAKE_BINARY_DIR}/cmake-modules/FindSDL2.cmake")
 		file(DOWNLOAD "https://github.com/tcbrindle/sdl2-cmake-scripts/raw/master/FindSDL2.cmake" "${CMAKE_BINARY_DIR}/cmake-modules/FindSDL2.cmake")
 	endif()
 	if(NOT EXISTS "${CMAKE_BINARY_DIR}/cmake-modules/FindSDL2_mixer.cmake")
