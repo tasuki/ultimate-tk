@@ -83,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      LOBBY_HOST: suomipelit-lobby.herokuapp.com
+      LOBBY_HOST: suomipelit-lobby.fly.dev
 
     steps:
     - uses: actions/checkout@v2
