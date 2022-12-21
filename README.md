@@ -14,10 +14,7 @@ Ultimate Tapan Kaikki
 This is the legendary 90s game Ultimate Tapan Kaikki, ported to
 SDL2. It runs at least on macOS, Linux, FreeBSD and Windows.
 
-The port is maintained by the [Suomipelit][suomipelit-gh] organization,
-whose mission is to archive, port, and maintain classic Finnish freeware and
-shareware games.  Feel free to [join the Suomipelit Slack][suomipelit-slack]
-too!
+See also the [Level Editor for Ultimate Tapan Kaikki][utk-level-editor-gh] project.
 
 Key bindings
 ------------
@@ -269,3 +266,4 @@ Releases
 
 [suomipelit-gh]: https://github.com/suomipelit
 [suomipelit-slack]: https://tinyurl.com/suomipelit-slack
+[utk-level-editor-gh]: https://github.com/suomipelit/utk-level-editor
