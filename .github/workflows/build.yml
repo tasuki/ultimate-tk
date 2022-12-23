@@ -25,7 +25,6 @@ jobs:
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       run: |
-        brew update
         brew install sdl2 sdl2_mixer sdl2_image sdl2_net
 
     - name: Configure CMake
