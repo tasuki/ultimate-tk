@@ -123,5 +123,7 @@ jobs:
         cd deploy
         git config --global user.email "GitHub Actions"
         git config --global user.name "actions@github.com"
-        git commit -am "Deploy commit ${{github.sha}} of ${{github.repository}}"
-        git push
+        if ! git diff --exit-code; then
+          git commit -am "Deploy commit ${{github.sha}} of ${{github.repository}}"
+          git push
+        fi
