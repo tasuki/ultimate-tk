@@ -83,6 +83,7 @@ jobs:
 
     env:
       LOBBY_HOST: suomipelit-lobby.fly.dev
+      EMSCRIPTEN_VERSION: 3.1.20
 
     steps:
     - uses: actions/checkout@v2
@@ -93,8 +94,8 @@ jobs:
       run: |
         git clone https://github.com/emscripten-core/emsdk.git /tmp/emsdk
         cd /tmp/emsdk
-        ./emsdk install latest
-        ./emsdk activate latest
+        ./emsdk install $EMSCRIPTEN_VERSION
+        ./emsdk activate $EMSCRIPTEN_VERSION
 
     - name: Configure CMake
       working-directory: src
