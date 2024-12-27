@@ -17,7 +17,7 @@ void draw_block( int x, int y, int type, int num, int mode )
     int sx = 0, ex = 20, sy = 0, ey = 20;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > 300 ) ex = 20 - ( x - 300 );
+    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
@@ -36,7 +36,7 @@ void draw_block( int x, int y, int type, int num, int mode )
         if ( sx > 20 ) sx = 20;
     }
     offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
-    gofs = virbuff + (( y + sy ) *320 + x + sx);
+    gofs = virbuff + (( y + sy ) * scr_x_size + x + sx);
     if ( type == FLOOR ) texture = floorspr + offs + sx;
     else if ( type == WALLS ) texture = wallspr + offs + sx;
     else return;
@@ -44,7 +44,7 @@ void draw_block( int x, int y, int type, int num, int mode )
     {
         memcpy( gofs, texture, ex - sx );
         texture += 320;
-        gofs += 320;
+        gofs += scr_x_size;
     }
 }
 
@@ -57,7 +57,7 @@ void draw_dark_block( int x, int y, int num, int mode )
     int sx = 0, ex = 20, sy = 0, ey = 20;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > 300 ) ex = 20 - ( x - 300 );
+    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
@@ -76,12 +76,12 @@ void draw_dark_block( int x, int y, int num, int mode )
         if ( sx > 20 ) sx = 20;
     }
     offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
-    gofs = virbuff + (( y + sy ) *320 + x + sx);
+    gofs = virbuff + (( y + sy ) * scr_x_size + x + sx);
     for ( a = sy; a < ey; a ++  )
     {
         memcpy( gofs, floorspr2 + offs + sx, ex - sx );
         offs += 320;
-        gofs += 320;
+        gofs += scr_x_size;
     }
 }
 
@@ -92,7 +92,7 @@ void draw_shadow( int x, int y, int num, int mode )
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > 300 ) ex = 20 - ( x - 300 );
+    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
@@ -112,9 +112,9 @@ void draw_shadow( int x, int y, int num, int mode )
     }
 
     s = shadowspr + (( sy*320 )  + num*20);
-    vb = virbuff + (( y + sy ) *320 + x);
+    vb = virbuff + (( y + sy ) * scr_x_size + x);
 
-    for ( a = sy; a < ey; a ++ , vb += 320, s += 320 )
+    for ( a = sy; a < ey; a ++ , vb += scr_x_size, s += 320 )
     for ( b = sx; b < ex; b ++  )
     {
         colo = s[b];
@@ -129,7 +129,7 @@ void draw_rambo( int x, int y, int angle, int num, int mode, int col )
     int colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > 28 ) sx = 28;
-    if ( x > 292 ) ex = 28 - ( x - 292 );
+    if ( x > scr_x_size - 28 ) ex = 28 - ( x - ( scr_x_size - 28 )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 28 ) sy = 28;
@@ -147,9 +147,9 @@ void draw_rambo( int x, int y, int angle, int num, int mode, int col )
         if ( x < 161 ) sx = 161 - x;
         if ( sx > 28 ) sx = 28;
     }
-    offs1 = ( y + sy ) *320 + x;
+    offs1 = ( y + sy ) * scr_x_size + x;
     offs2 = ( ( sy + 1 + ( num*29 )  ) *1160 )  + ( angle*29 )  + 1;
-    for ( a = sy, c = 0, d = 0; a < ey; a++, c += 320, d += 1160 )
+    for ( a = sy, c = 0, d = 0; a < ey; a++, c += scr_x_size, d += 1160 )
     {
         for ( b = sx; b < ex; b++ )
         {
@@ -176,7 +176,7 @@ void draw_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int offs, 
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > 320 - xs ) ex = xs - ( x - ( 320 - xs )  );
+    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
@@ -194,11 +194,11 @@ void draw_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int offs, 
         if ( x < 161 ) sx = 161 - x;
         if ( sx > xs ) sx = xs;
     }
-    offs1 = ( y + sy ) *320 + x;
+    offs1 = ( y + sy ) * scr_x_size + x;
     offs2 = ( sy*xsize )  + offs;
     src = spr + offs2 + sx;
     dest = virbuff + offs1 + sx;
-    for ( a = sy; a < ey; a ++ , dest += 320 - ( ex - sx ), src += xsize - ( ex - sx )  )
+    for ( a = sy; a < ey; a ++ , dest += scr_x_size - ( ex - sx ), src += xsize - ( ex - sx )  )
     for ( b = sx; b < ex; b ++  )
     {
         colo = *( src ++  );
@@ -214,7 +214,7 @@ void draw_trans_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int 
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > 320 - xs ) ex = xs - ( x - ( 320 - xs )  );
+    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
@@ -232,11 +232,11 @@ void draw_trans_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int 
         if ( x < 161 ) sx = 161 - x;
         if ( sx > xs ) sx = xs;
     }
-    offs1 = ( y + sy ) *320 + x;
+    offs1 = ( y + sy ) * scr_x_size + x;
     offs2 = ( sy*xsize )  + offs;
     src = spr + offs2 + sx;
     dest = virbuff + offs1 + sx;
-    for ( a = sy; a < ey; a++, dest += 320 - (ex - sx), src += xsize - (ex - sx))
+    for ( a = sy; a < ey; a++, dest += scr_x_size - (ex - sx), src += xsize - (ex - sx))
     {
         for ( b = sx; b < ex; b++ )
         {
@@ -284,7 +284,7 @@ void draw_light( Light_table *lt, int x, int y, int num, int add, int mode )
     y -= ( ys / 2 );
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > 320 - xs ) ex = xs - ( x - ( 320 - xs )  );
+    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
@@ -302,8 +302,8 @@ void draw_light( Light_table *lt, int x, int y, int num, int add, int mode )
         if ( x < 161 ) sx = 161 - x;
         if ( sx > xs ) sx = xs;
     }
-    offs1 = ( y + sy ) *320 + x;
-    for ( a = sy, offs2 = a*xs, c = 0; a < ey; a ++ , c += 320, offs2 += xs )
+    offs1 = ( y + sy ) * scr_x_size + x;
+    for ( a = sy, offs2 = a*xs, c = 0; a < ey; a ++ , c += scr_x_size, offs2 += xs )
     for ( b = sx; b < ex; b ++  )
     if ( light[num].data[offs2 + b] )
     {
@@ -348,8 +348,8 @@ void draw_black()
     if ( GAME_MODE!= SPLIT_SCREEN )
     {
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
-        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 17 )
-        for ( b = 0; b < 17; b ++ , offs ++  )
+        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
+        for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
         if ( offs < level_size )
         if ( level[offs].type == FLOOR )
         if ( !aplayer[0]->see_level[offs] )
@@ -385,8 +385,8 @@ void draw_floor()
     if ( GAME_MODE!= SPLIT_SCREEN )
     {
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
-        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 17 )
-        for ( b = 0; b < 17; b ++ , offs ++  )
+        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
+        for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
         if ( offs < level_size )
         if ( level[offs].type == FLOOR )
         {
@@ -434,8 +434,8 @@ void draw_shadows()
     if ( GAME_MODE!= SPLIT_SCREEN )
     {
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
-        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 17 )
-        for ( b = 0; b < 17; b ++ , offs ++  )
+        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
+        for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
         if ( offs < level_size )
         if ( level[offs].shadow > 0 )
         {
@@ -480,12 +480,12 @@ void draw_walls()
     if ( GAME_MODE!= SPLIT_SCREEN )
     {
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
-        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 17 )
-        for ( b = 0; b < 17; b ++ , offs ++  )
+        for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
+        for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
         if ( offs < level_size )
         {
             if ( level[offs].type == WALLS )
-            draw_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, level[offs].type, level[offs].num, 0 );
+            draw_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, WALLS, level[offs].num, 0 );
         }
         else draw_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, WALLS, 19, 0 );
     }
@@ -521,13 +521,13 @@ int chk4draw( int x, int y, int sx, int sy, int size, int mode )
 {
     if ( mode == 0 &&
          x > sx - size &&
-         x < sx + 320 &&
+         x < sx + scr_x_size &&
          y > sy - size &&
          y < sy + scr_y_size )
         return (1);
     if ( mode > 0 &&
          x > sx - size &&
-         x < sx + 160 &&
+         x < sx + scr_x_size/2 &&
          y > sy - size &&
          y < sy + scr_y_size )
         return (1);
@@ -788,12 +788,12 @@ void draw_infos()
 
 void draw_energies()
 {
-    int a, offs = ( ( scr_y_size - 5 ) *320 )  + 3;
+    int a, offs = ( ( scr_y_size - 5 ) * scr_x_size )  + 3;
     float div = ( ( float ) ( aplayer[0]->max_energy + ( aplayer[0]->shield*10 )  ) / 5 )  / 15;
     for ( a = 0; a < aplayer[0]->energy / 5; a ++  )
     {
         virbuff[offs + a] = 239 - ( a / div );
-        virbuff[offs + a + 320] = 239 - ( a / div );
+        virbuff[offs + a + scr_x_size] = 239 - ( a / div );
     }
     if ( GAME_MODE == SPLIT_SCREEN )
     {
@@ -812,7 +812,7 @@ void map()
     int a, b, offs, cx = 0, cy = 0, type;
     if ( GAME_MODE!= SPLIT_SCREEN )
     {
-        cx = 320 - ( level_x_size );
+        cx = scr_x_size - ( level_x_size );
         cy = 0;
     }
     if ( GAME_MODE == SPLIT_SCREEN )
@@ -820,8 +820,8 @@ void map()
         cx = 160 - ( level_x_size / 2 );
         cy = ( scr_y_size / 2 )  - ( level_y_size / 2 );
     }
-    offs = cy*320 + cx;
-    for ( a = 0; a < level_y_size; a ++ , offs += ( 320 - level_x_size )  )
+    offs = cy*scr_x_size + cx;
+    for ( a = 0; a < level_y_size; a ++ , offs += ( scr_x_size - level_x_size )  )
     for ( b = 0; b < level_x_size; b ++ , offs ++  )
     {
         type = level[a*level_x_size + b].type;
@@ -830,16 +830,16 @@ void map()
     }
     for ( a = 0; a < ENEMIES; a ++  )
     if ( enemy[a].DEAD )
-    virbuff[( ( int ) ( ( enemy[a].y + 15 )  / 20 )  + cy ) *320 + ( int ) ( ( enemy[a].x + 15 )  / 20 )  + cx] = 9;
+    virbuff[( ( int ) ( ( enemy[a].y + 15 )  / 20 )  + cy ) *scr_x_size + ( int ) ( ( enemy[a].x + 15 )  / 20 )  + cx] = 9;
     if ( SHOW_ENEMIES )
     for ( a = 0; a < ENEMIES; a ++  )
     if ( !enemy[a].DEAD )
-    virbuff[( ( int ) ( ( enemy[a].y + 15 )  / 20 )  + cy ) *320 + ( int ) ( ( enemy[a].x + 15 )  / 20 )  + cx] = 3;
+    virbuff[( ( int ) ( ( enemy[a].y + 15 )  / 20 )  + cy ) *scr_x_size + ( int ) ( ( enemy[a].x + 15 )  / 20 )  + cx] = 3;
     if (GAME_MODE!=SPLIT_SCREEN)
     for ( a = 0; a < MAX_PLAYERS; a ++  )
     if (KILLING_MODE!=DEATHMATCH || aplayer[0]->tindex==a)
     if (player[a].enabled)
-    virbuff[( ( int ) ( ( player[a].y + 15 )  / 20 )  + cy ) *320 + ( int ) ( ( player[a].x + 15 )  / 20 )  + cx] = ( char ) player[a].color;
+    virbuff[( ( int ) ( ( player[a].y + 15 )  / 20 )  + cy ) *scr_x_size + ( int ) ( ( player[a].x + 15 )  / 20 )  + cx] = ( char ) player[a].color;
 }
 
 void draw_box1( int x1, int y1, int x2, int y2, int add )
@@ -860,14 +860,14 @@ void draw_box1( int x1, int y1, int x2, int y2, int add )
 void rectangle( int x1, int y1, int x2, int y2, int col )
 {
     int a, offs, offs1, offs2, offs3;
-    offs1 = y1*320 + x1;
-    offs2 = y1*320 + x2;
-    offs3 = y2*320 + x1;
+    offs1 = y1*scr_x_size + x1;
+    offs2 = y1*scr_x_size + x2;
+    offs3 = y2*scr_x_size + x1;
     memset( virbuff + offs1, col, ( x2 - x1 )  + 1 );
     memset( virbuff + offs3, col, ( x2 - x1 )  + 1 );
-    for( a = 0, offs = offs1 + 320; a < ( y2 - y1 )  - 1; a ++ , offs += 320 )
+    for( a = 0, offs = offs1 + scr_x_size; a < ( y2 - y1 )  - 1; a ++ , offs += scr_x_size )
     virbuff[offs] = ( char ) col;
-    for( a = 0, offs = offs2 + 320; a < ( y2 - y1 )  - 1; a ++ , offs += 320 )
+    for( a = 0, offs = offs2 + scr_x_size; a < ( y2 - y1 )  - 1; a ++ , offs += scr_x_size )
     virbuff[offs] = ( char ) col;
 }
 
@@ -875,7 +875,7 @@ void draw_hits()
 {
     if ( GAME_MODE!= SPLIT_SCREEN )
     if ( aplayer[0]->HIT > 0 )
-    rectangle( 0, 0, 319, scr_y_size - 1, ( ( 4*16 )  - 1 )  - aplayer[0]->HIT );
+    rectangle( 0, 0, scr_x_size - 1, scr_y_size - 1, ( ( 4*16 )  - 1 )  - aplayer[0]->HIT );
     if ( GAME_MODE == SPLIT_SCREEN )
     {
         if ( aplayer[0]->HIT > 0 )
@@ -899,10 +899,10 @@ void draw_targets()
         x = aplayer[0]->x + 14 + 10*sini[aplayer[0]->rangle2];
         y = aplayer[0]->y + 14 + 10*cosi[aplayer[0]->rangle2];
         dist = bullet_type[weapon[aplayer[0]->curr_weapon].btype].time*bullet_type[weapon[aplayer[0]->curr_weapon].btype].speed;
-        for ( a = 0; a < dist &&x - aplayer[0]->scr_x >= 0 &&x - aplayer[0]->scr_x < 320 &&y - aplayer[0]->scr_y >= 0 &&y - aplayer[0]->scr_y < scr_y_size &&level[( int ) ( y / 20 ) *level_x_size + ( int ) ( x / 20 ) ].type == FLOOR; a ++  )
+        for ( a = 0; a < dist &&x - aplayer[0]->scr_x >= 0 &&x - aplayer[0]->scr_x < scr_x_size &&y - aplayer[0]->scr_y >= 0 &&y - aplayer[0]->scr_y < scr_y_size &&level[( int ) ( y / 20 ) *level_x_size + ( int ) ( x / 20 ) ].type == FLOOR; a ++  )
         {
             if ( ( a - ( int ) ( plot_count / 2 )  )  % 6 == 0 )
-            virbuff[( int ) ( y - aplayer[0]->scr_y ) *320 + ( int ) ( x - aplayer[0]->scr_x ) ]= ( char ) ( 9 * 16 );
+            virbuff[( int ) ( y - aplayer[0]->scr_y ) * scr_x_size + ( int ) ( x - aplayer[0]->scr_x ) ]= ( char ) ( 9 * 16 );
             x += sini[aplayer[0]->rangle2];
             y += cosi[aplayer[0]->rangle2];
         }

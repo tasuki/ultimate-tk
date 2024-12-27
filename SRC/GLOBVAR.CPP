@@ -10,6 +10,7 @@
 #include "PORT.H"
 
 int BACK_TO_MENU = 0;
+int scr_x_size = 320;
 int scr_y_size = 200;
 int net_avail = 0;
 int GAME_MODE = 0, NETWORK_MODE = CLIENT;
@@ -124,7 +125,7 @@ const char *k_text[DIFF_K] =
 
 Effect_type effect_type[10];
 char *screen = NULL;
-char virbuff[320*240];
+char virbuff[640*480];
 float sini[360], cosi[360];
 tk_port::Font thefonts[10];
 int FONT_NUM;
