@@ -556,7 +556,7 @@ void quiti()
     int a, x = 160 - ( str_length( quitstr )  / 2 );
     clock_t time;
     for ( a = 0; a < 12; a++ )
-        memset( virbuff + (a + (scr_y_size / 2) - 6) * 320 + x - 2, 0, 320 - (x * 2) + 4 );
+        memset( virbuff + (a + (scr_y_size / 2) - 6) * scr_x_size + x - 2, 0, scr_x_size - (x * 2) + 4 );
     writefonts( x, (scr_y_size / 2) - 4, quitstr, 1 );
     memcpy( screen, virbuff, 64000 );
     i::clear_stack();
@@ -757,7 +757,7 @@ void complete()
     int a;
     next_level ++ ;
     a = ( next_level*5 )  % 360;
-    writefonts( 160 + ( ( 160 - ( ( float ) next_level / ( ( float ) C_DELAY / 160 )  )  ) *sini[a] )  - 45, ( scr_y_size / 2 )  + ( 100 - ( ( float ) next_level / ( ( float ) C_DELAY / 100 )  )  ) *cosi[a], "MISSION COMPLETED", 3*16 );
+    writefonts( scr_x_size/2 + ( ( scr_x_size/2 - ( ( float ) next_level / ( ( float ) C_DELAY / ( scr_x_size/2 ) )  )  ) *sini[a] )  - 45, ( scr_y_size / 2 )  + ( 100 - ( ( float ) next_level / ( ( float ) C_DELAY / 100 )  )  ) *cosi[a], "MISSION COMPLETED", 3*16 );
 }
 
 void kello()
@@ -766,16 +766,16 @@ void kello()
     if ( ! next_level )
         complete_time = (vclock() - st) / CLOCKS_PER_SEC;
     if ( complete_time > general_level_info.time_limit * TIME_ADD ) col = 3 * 16;
-    writefonts( 151, 10, c_2_c( complete_time ), col );
+    writefonts( scr_x_size / 2 - 9, 10, c_2_c( complete_time ), col );
 }
 
 void frames_per_sec()
 {
     char text[5];
     sprintf( text, "%d", F_PER_SEC );
-    writefonts( 151, 20, text, 9*16 );
+    writefonts( scr_x_size / 2 - 9, 20, text, 9*16 );
     sprintf( text, "%d", OVER_POWER  );
-    writefonts( 151, 30, text, 7*16 );
+    writefonts( scr_x_size / 2 - 9, 30, text, 7*16 );
 }
 
 void dec_hits()
@@ -1034,7 +1034,7 @@ void game_shit()
         fadein( virbuff, pal ); else setpal(pal,256);
         first = 0;
      }
-    memcpy( screen, virbuff, 320*scr_y_size );
+    memcpy( screen, virbuff, scr_x_size*scr_y_size );
     roll_effects();
     are_all_dead();
 }
@@ -2604,7 +2604,7 @@ void game()
                  for ( a = 0; a < ACTIVE_PLAYERS; a ++  ) aplayer[a]->shop();
             }
 
-            tk_port::change_resolution( 240 );
+            tk_port::change_resolution( 560, 420 );
 
             peli_biisi();
 
@@ -2729,7 +2729,7 @@ void game()
         fadeout( virbuff, pal );
         menu_biisi();
 
-        tk_port::change_resolution( 200 );
+        tk_port::change_resolution( 320, 200 );
 
         if ( KILLING_MODE!= DEATHMATCH )
         {
