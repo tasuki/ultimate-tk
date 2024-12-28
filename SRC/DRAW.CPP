@@ -350,7 +350,7 @@ void draw_black()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
         for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         if ( !aplayer[0]->see_level[offs] )
         draw_dark_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, level[offs].num, 0 );
@@ -362,14 +362,14 @@ void draw_black()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         if ( !aplayer[0]->see_level[offs] )
         draw_dark_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, level[offs].num, 1 );
         offs = ( aplayer[1]->scr_y / 20 ) *level_x_size + ( aplayer[1]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         if ( !aplayer[1]->see_level[offs] )
         draw_dark_block( ( b*20 )  - ovx2 + 160, ( a*20 )  - ovy2, level[offs].num, 2 );
@@ -387,7 +387,7 @@ void draw_floor()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
         for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         {
             do_it = 1;
@@ -403,7 +403,7 @@ void draw_floor()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         {
             do_it = 1;
@@ -414,7 +414,7 @@ void draw_floor()
         offs = ( aplayer[1]->scr_y / 20 ) *level_x_size + ( aplayer[1]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].type == FLOOR )
         {
             do_it = 1;
@@ -436,7 +436,7 @@ void draw_shadows()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
         for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].shadow > 0 )
         {
             dou = 1;
@@ -451,7 +451,7 @@ void draw_shadows()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].shadow > 0 )
         {
             dou = 1;
@@ -461,7 +461,7 @@ void draw_shadows()
         offs = ( aplayer[1]->scr_y / 20 ) *level_x_size + ( aplayer[1]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         if ( level[offs].shadow > 0 )
         {
             dou = 1;
@@ -482,7 +482,7 @@ void draw_walls()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - (scr_x_size / 20 + 1) )
         for ( b = 0; b < scr_x_size / 20 + 1; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         {
             if ( level[offs].type == WALLS )
             draw_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, WALLS, level[offs].num, 0 );
@@ -496,7 +496,7 @@ void draw_walls()
         offs = ( aplayer[0]->scr_y / 20 ) *level_x_size + ( aplayer[0]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         {
             if ( level[offs].type == WALLS )
             draw_block( ( b*20 )  - ovx1, ( a*20 )  - ovy1, level[offs].type, level[offs].num, 1 );
@@ -505,7 +505,7 @@ void draw_walls()
         offs = ( aplayer[1]->scr_y / 20 ) *level_x_size + ( aplayer[1]->scr_x / 20 );
         for ( a = 0; a < scr_y_size / 20 + 1; a ++ , offs += level_x_size - 9 )
         for ( b = 0; b < 9; b ++ , offs ++  )
-        if ( offs < level_size )
+        if ( offs >= 0 && offs < level_size )
         {
             if ( level[offs].type == WALLS )
             draw_block( ( b*20 )  - ovx2 + 160, ( a*20 )  - ovy2, level[offs].type, level[offs].num, 2 );
