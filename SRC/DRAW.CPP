@@ -17,11 +17,11 @@ void draw_block( int x, int y, int type, int num, int mode )
     int sx = 0, ex = 20, sy = 0, ey = 20;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
+    if ( x > scr_x_size - 20 ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
-    if ( y > scr_y_size - 20 ) ey = 20 - ( y - ( scr_y_size - 20 )  );
+    if ( y > scr_y_size - 20 ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -57,11 +57,11 @@ void draw_dark_block( int x, int y, int num, int mode )
     int sx = 0, ex = 20, sy = 0, ey = 20;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
+    if ( x > scr_x_size - 20 ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
-    if ( y > scr_y_size - 20 ) ey = 20 - ( y - ( scr_y_size - 20 )  );
+    if ( y > scr_y_size - 20 ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -92,11 +92,11 @@ void draw_shadow( int x, int y, int num, int mode )
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > 20 ) sx = 20;
-    if ( x > scr_x_size - 20 ) ex = 20 - ( x - ( scr_x_size - 20 )  );
+    if ( x > scr_x_size - 20 ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 20 ) sy = 20;
-    if ( y > scr_y_size - 20 ) ey = 20 - ( y - ( scr_y_size - 20 )  );
+    if ( y > scr_y_size - 20 ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -129,11 +129,11 @@ void draw_rambo( int x, int y, int angle, int num, int mode, int col )
     int colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > 28 ) sx = 28;
-    if ( x > scr_x_size - 28 ) ex = 28 - ( x - ( scr_x_size - 28 )  );
+    if ( x > scr_x_size - 28 ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > 28 ) sy = 28;
-    if ( y > scr_y_size - 28 ) ey = 28 - ( y - ( scr_y_size - 28 )  );
+    if ( y > scr_y_size - 28 ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -176,11 +176,11 @@ void draw_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int offs, 
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
+    if ( x > scr_x_size - xs ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
-    if ( y > scr_y_size - ys ) ey = ys - ( y - ( scr_y_size - ys )  );
+    if ( y > scr_y_size - ys ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -214,11 +214,11 @@ void draw_trans_sprite( int x, int y, int xs, int ys, char *spr, int xsize, int 
     char colo;
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
+    if ( x > scr_x_size - xs ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
-    if ( y > scr_y_size - ys ) ey = ys - ( y - ( scr_y_size - ys )  );
+    if ( y > scr_y_size - ys ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
@@ -284,11 +284,11 @@ void draw_light( Light_table *lt, int x, int y, int num, int add, int mode )
     y -= ( ys / 2 );
     if ( x < 0 ) sx =  - x;
     if ( sx > xs ) sx = xs;
-    if ( x > scr_x_size - xs ) ex = xs - ( x - ( scr_x_size - xs )  );
+    if ( x > scr_x_size - xs ) ex = scr_x_size - x;
     if ( ex < 0 ) ex = 0;
     if ( y < 0 ) sy =  - y;
     if ( sy > ys ) sy = ys;
-    if ( y > scr_y_size - ys ) ey = ys - ( y - ( scr_y_size - ys )  );
+    if ( y > scr_y_size - ys ) ey = scr_y_size - y;
     if ( ey < 0 ) ey = 0;
     if ( mode == 1 )
     {
