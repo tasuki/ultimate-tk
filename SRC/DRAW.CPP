@@ -35,7 +35,15 @@ void draw_block( int x, int y, int type, int num, int mode )
         if ( x < 161 ) sx = 161 - x;
         if ( sx > 20 ) sx = 20;
     }
-    offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
+    if ( x < scr_x_size - level_x_size * 20 || y + 20 < scr_y_size - level_y_size * 20 ) {
+        // out of bounds for level
+        if ( type == FLOOR )
+            offs = 14 * 20;
+        else
+            offs = 15 * 20;
+    } else {
+        offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
+    }
     gofs = virbuff + (( y + sy ) * scr_x_size + x + sx);
     if ( type == FLOOR ) texture = floorspr + offs + sx;
     else if ( type == WALLS ) texture = wallspr + offs + sx;
@@ -75,7 +83,12 @@ void draw_dark_block( int x, int y, int num, int mode )
         if ( x < 161 ) sx = 161 - x;
         if ( sx > 20 ) sx = 20;
     }
-    offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
+    if ( x < scr_x_size - level_x_size * 20 || y + 20 < scr_y_size - level_y_size * 20 ) {
+        // out of bounds for level
+        offs = 14 * 20;
+    } else {
+        offs = ( ( num&15 ) *20 )  + ( num / 16*320*20 )  + sy*320;
+    }
     gofs = virbuff + (( y + sy ) * scr_x_size + x + sx);
     for ( a = sy; a < ey; a ++  )
     {
