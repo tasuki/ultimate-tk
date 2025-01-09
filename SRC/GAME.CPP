@@ -2604,7 +2604,7 @@ void game()
                  for ( a = 0; a < ACTIVE_PLAYERS; a ++  ) aplayer[a]->shop();
             }
 
-            tk_port::change_resolution( 560, 420 );
+            tk_port::change_resolution( scr_custom_x_size, scr_custom_y_size );
 
             peli_biisi();
 
@@ -2907,9 +2907,32 @@ void logo()
     tk_port::event_tick();
 }
 
+std::pair<int, int> parse_resolution(const std::string& res) {
+    int w, h;
+    size_t x_pos = res.find('x');
+    if (x_pos == std::string::npos) {
+        std::cout << "Invalid resolution format. Expected WIDTHxHEIGHT, eg `-r 560x420`." << std::endl;
+        exit( 1 );
+    }
+
+    std::string w_str = res.substr(0, x_pos);
+    std::string h_str = res.substr(x_pos + 1);
+
+    w = std::stoi(w_str);
+    h = std::stoi(h_str);
+
+    if (w < 320 || h < 200 || w > 800 || h > 460) {
+        std::cerr << "Invalid resolution. Must be between 320x200 and 800x460." << std::endl;
+        exit( 1 );
+    }
+
+    return std::make_pair(w, h);
+}
+
 static void parse_cmdline( int argc, char *argv[], int *pause )
 {
     int b;
+    std::pair<int, int> resolution;
     for ( int a = 1; a < argc; a++ )
     {
         strupr( argv[a] );
@@ -2938,6 +2961,11 @@ static void parse_cmdline( int argc, char *argv[], int *pause )
                 case 'M':
                     SHOW_ENEMIES = 1;
                     break;
+                case 'R':
+                    resolution = parse_resolution(argv[++a]);
+                    scr_custom_x_size = resolution.first;
+                    scr_custom_y_size = resolution.second;
+                    break;
                 case 'H':
                 case '?':
                     std::cout << std::endl;
@@ -2945,16 +2973,16 @@ static void parse_cmdline( int argc, char *argv[], int *pause )
                     std::cout << "Compiled at " << __DATE__ << ' ' << __TIME__ << std::endl;
                     std::cout << "parameters:" << std::endl;
                     std::cout << "-?,-h this help" << std::endl;
-                    std::cout << "-v    force mcga mode" << std::endl;
 #ifndef TK_MACOSX_BUNDLE
-                    std::cout << "-p    pause at startup" << std::endl;
+                    std::cout << "-p        pause at startup" << std::endl;
 #endif
-                    std::cout << "-m    show enemies on map" << std::endl;
-                    std::cout << "-l ## start at level ##" << std::endl;
-                    std::cout << "-e ## immediately start single-player episode ##" << std::endl;
-                    std::cout << "-f ## set gamespeed to ## fps (def. 40)" << std::endl;
+                    std::cout << "-m        show enemies on map" << std::endl;
+                    std::cout << "-r ##x##  set resolution to WIDTHxHEIGHT, eg 560x420" << std::endl;
+                    std::cout << "-l ##     start at level ##" << std::endl;
+                    std::cout << "-e ##     immediately start single-player episode ##" << std::endl;
+                    std::cout << "-f ##     set gamespeed to ## fps (def. 40)" << std::endl;
                     std::cout << std::endl;
-                    exit( 1 );
+                    exit( 0 );
                     break;
             }
     }
