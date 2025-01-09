@@ -616,10 +616,10 @@ void Player::move( int angle, float spd, int index )
             if ( GAME_MODE == SPLIT_SCREEN )
             if ( index == 1 )
             {
-                crate[a].text_x = crate[a].x + 7 - str_length( crate[a].text )  - scr_x + 160;
+                crate[a].text_x = crate[a].x + 7 - str_length( crate[a].text )  - scr_x + scr_x_size/2;
                 crate[a].text_y = crate[a].y + 7 - scr_y;
-                crate[a].text_count = get_dist( crate[a].text_x, crate[a].text_y, 170, scr_y_size - 20 )  + 1;
-                crate[a].text_angle = get_angle( crate[a].text_x, crate[a].text_y, 170, scr_y_size - 20 );
+                crate[a].text_count = get_dist( crate[a].text_x, crate[a].text_y, scr_x_size/2 + 10, scr_y_size - 20 )  + 1;
+                crate[a].text_angle = get_angle( crate[a].text_x, crate[a].text_y, scr_x_size/2 + 10, scr_y_size - 20 );
             }
             if (enabled)
             if (GAME_MODE==NETWORK)
@@ -666,22 +666,22 @@ void Player::rotate( int change )
 
 void Player::move_scr()
 {
-    int spd, half_scr_x_size = scr_x_size/2;
+    int spd;
     if ( GAME_MODE == SPLIT_SCREEN )
     {
-        if ( abs((int)((scr_x + 80) - (x + 14))) > 100 ) scr_x = x - 80;
-        spd = abs((int)(((scr_x + 80)) - ((35 * sini[angle]) + x + 14))) / 4;
-        if ( scr_x + 80 < ( 35*sini[angle] )  + x + 14 ) scr_x += spd;
-        if ( scr_x + 80 > ( 35*sini[angle] )  + x + 14 ) scr_x -= spd;
+        if ( abs((int)((scr_x + scr_x_size/4) - (x + 14))) > 100 ) scr_x = x - scr_x_size/4;
+        spd = abs((int)(((scr_x + scr_x_size/4)) - ((35 * sini[angle]) + x + 14))) / 4;
+        if ( scr_x + scr_x_size/4 < ( 35*sini[angle] )  + x + 14 ) scr_x += spd;
+        if ( scr_x + scr_x_size/4 > ( 35*sini[angle] )  + x + 14 ) scr_x -= spd;
         if ( scr_x < 0 ) scr_x = 0;
-        if ( scr_x > ( level_x_size*20 )  - 160 ) scr_x = ( level_x_size*20 )  - 160;
+        if ( scr_x > ( level_x_size*20 )  - scr_x_size/2) scr_x = ( level_x_size*20 )  - scr_x_size/2;
     }
     else
     {
-        if ( abs((int)((scr_x + half_scr_x_size) - (x + 14))) > half_scr_x_size ) scr_x = x - half_scr_x_size;
-        spd = abs((int)((scr_x + half_scr_x_size) - ((25 * sini[angle]) + x + 14))) / 4;
-        if ( scr_x + half_scr_x_size < ( 25*sini[angle] )  + x + 14 ) scr_x += spd;
-        if ( scr_x + half_scr_x_size > ( 25*sini[angle] )  + x + 14 ) scr_x -= spd;
+        if ( abs((int)((scr_x + scr_x_size/2) - (x + 14))) > scr_x_size/2 ) scr_x = x - scr_x_size/2;
+        spd = abs((int)((scr_x + scr_x_size/2) - ((25 * sini[angle]) + x + 14))) / 4;
+        if ( scr_x + scr_x_size/2 < ( 25*sini[angle] )  + x + 14 ) scr_x += spd;
+        if ( scr_x + scr_x_size/2 > ( 25*sini[angle] )  + x + 14 ) scr_x -= spd;
         if ( scr_x < 0 ) scr_x = 0;
         if ( scr_x > ( level_x_size*20 )  - scr_x_size ) scr_x = ( level_x_size*20 )  - scr_x_size;
     }
